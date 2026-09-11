@@ -8,7 +8,9 @@ RUN apt-get update \
 COPY . /var/www/html/
 
 RUN mkdir -p /var/www/html/data /var/www/html/public/uploads \
-    && php /var/www/html/setup.php
+    && php /var/www/html/setup.php \
+    && chown -R www-data:www-data /var/www/html/data /var/www/html/public/uploads \
+    && chmod -R 775 /var/www/html/data /var/www/html/public/uploads
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
